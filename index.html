@@ -515,7 +515,6 @@ const CAFES = [
   {"region":"경기","name":"당엄모","link":"https://cafe.naver.com/ca-fe/cafes/14979990/menus/276/articles/write?boardType=L","unit":"주","count":"2","schedule":{"월":false,"화":true,"수":false,"목":true,"금":false,"토":false,"일":false}},
   {"region":"경기","name":"용인맘","link":"https://cafe.naver.com/ca-fe/cafes/15061734/menus/413/articles/write?boardType=L","unit":"주","count":"3","schedule":{"월":true,"화":false,"수":true,"목":false,"금":true,"토":false,"일":false}},
   {"region":"경기","name":"우리동네당진소식","link":"https://cafe.naver.com/ca-fe/cafes/21810887/menus/736/articles/write?boardType=L","unit":"일","count":"1","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
-  {"region":"경기","name":"수원맘모여라","link":"https://cafe.naver.com/ca-fe/cafes/13276223/menus/1174/articles/write?boardType=L","unit":"일","count":"1","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
   {"region":"경기","name":"아띠아모","link":"https://cafe.naver.com/ca-fe/cafes/22897837/menus/832/articles/write?boardType=L","unit":"일","count":"1","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
   {"region":"경기","name":"맘스홀릭","link":"https://cafe.naver.com/ca-fe/cafes/10094499/menus/1064/articles/write?boardType=L","unit":"제한X","count":"","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
   {"region":"부산","name":"강서맘","link":"https://cafe.naver.com/ca-fe/cafes/25347569/menus/1161/articles/write?boardType=L","unit":"주","count":"2","schedule":{"월":false,"화":false,"수":true,"목":false,"금":true,"토":false,"일":false}},
@@ -640,7 +639,10 @@ document.getElementById('openAllBtn').addEventListener('click', function() {
     if (!window.open(DOLBOM_LINK, '_blank')) fail++;
   }
   var list = forDay(selected);
-  list.forEach(function(c) { if (!window.open(c.link, '_blank')) fail++; });
+  var first = list.filter(function(c) { return c.name === '맘스홀릭'; });
+  var rest  = list.filter(function(c) { return c.name !== '맘스홀릭'; });
+  first.forEach(function(c) { if (!window.open(c.link, '_blank')) fail++; });
+  rest.forEach(function(c) { if (!window.open(c.link, '_blank')) fail++; });
   var total = list.length + (isWeekend(selected) ? 1 : 0);
   if (fail) document.getElementById('openHint').textContent = '⚠ ' + (total-fail) + '/' + total + '개만 열림 — 팝업 허용 필요';
 });
