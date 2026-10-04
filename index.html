@@ -494,7 +494,6 @@
     <div class="action-hint" id="openHint"></div>
     <div class="action-sub-row">
       <button class="action-sub" id="lunchBtn"><span class="icon">🍚</span> 점심, 저녁 업로드 3곳</button>
-      <button class="action-sub" id="myArticlesBtn"><span class="icon">📝</span> 내 글 목록</button>
       <button class="action-sub" id="momsBtn"><span class="icon">💜</span> 맘스홀릭</button>
       <button class="action-sub" id="allCafeBtn"><span class="icon">🌐</span> 전체 카페 열기</button>
     </div>
@@ -627,10 +626,6 @@ document.getElementById('lunchBtn').addEventListener('click', function() {
   if (!window.open(MY_ARTICLES, '_blank')) fail++;
   list.forEach(function(c) { if (!window.open(c.link, '_blank')) fail++; });
   if (fail) alert((list.length+1-fail) + '/' + (list.length+1) + '개만 열림 — 팝업 차단 해제 필요');
-});
-
-document.getElementById('myArticlesBtn').addEventListener('click', function() {
-  window.open(MY_ARTICLES, '_blank');
 });
 
 document.getElementById('momsBtn').addEventListener('click', function() {
