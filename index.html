@@ -493,7 +493,7 @@
     <button class="action-main" id="openAllBtn" disabled>요일을 선택하세요</button>
     <div class="action-hint" id="openHint"></div>
     <div class="action-sub-row">
-      <button class="action-sub" id="lunchBtn"><span class="icon">🍚</span> 점심, 저녁 업로드 4곳</button>
+      <button class="action-sub" id="lunchBtn"><span class="icon">🍚</span> 점심, 저녁 업로드 3곳</button>
       <button class="action-sub" id="momsBtn"><span class="icon">💜</span> 맘스홀릭</button>
       <button class="action-sub" id="allCafeBtn"><span class="icon">🌐</span> 전체 카페 열기</button>
     </div>
@@ -524,7 +524,6 @@ const CAFES = [
   {"region":"부산","name":"구지맘","link":"https://cafe.naver.com/ca-fe/cafes/28770399/menus/420/articles/write?boardType=L","unit":"일","count":"1","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
   {"region":"부산","name":"진해댁","link":"https://cafe.naver.com/ca-fe/cafes/14952369/menus/422/articles/write?boardType=L","unit":"일","count":"1","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
   {"region":"부산","name":"부경맘","link":"https://cafe.naver.com/ca-fe/cafes/18077961/menus/1489/articles/write?boardType=L","unit":"일","count":"2","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
-  {"region":"부산","name":"진주엔","link":"https://cafe.naver.com/ca-fe/cafes/25684317/menus/379/articles/write?boardType=L","unit":"일","count":"2","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
   {"region":"부산","name":"정관맘스","link":"https://cafe.naver.com/ca-fe/cafes/22068083/menus/2832/articles/write?boardType=L","unit":"일","count":"1","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
   {"region":"부산","name":"부사맘","link":"https://cafe.naver.com/ca-fe/cafes/28251007/menus/818/articles/write?boardType=L","unit":"일","count":"1","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
   {"region":"부산","name":"창원부동산이야기","link":"https://cafe.naver.com/ca-fe/cafes/19547479/menus/209/articles/write?boardType=L","unit":"일","count":"1","schedule":{"월":true,"화":true,"수":true,"목":true,"금":true,"토":true,"일":true}},
@@ -533,7 +532,7 @@ const CAFES = [
 
 const DAYS = ['월','화','수','목','금','토','일'];
 const DAY_MAP = {0:'일',1:'월',2:'화',3:'수',4:'목',5:'금',6:'토'};
-const LUNCH = ['맘스홀릭','대구맘 365','부경맘','진주엔'];
+const LUNCH = ['맘스홀릭','대구맘 365','부경맘'];
 const RSHORT = {'경기':'경','부산':'부'};
 let selected = null;
 
