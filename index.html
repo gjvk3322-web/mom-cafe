@@ -494,6 +494,7 @@
     <div class="action-hint" id="openHint"></div>
     <div class="action-sub-row">
       <button class="action-sub" id="lunchBtn"><span class="icon">🍚</span> 점심, 저녁 업로드 3곳</button>
+      <button class="action-sub" id="myArticlesBtn"><span class="icon">📝</span> 내 글 목록</button>
       <button class="action-sub" id="momsBtn"><span class="icon">💜</span> 맘스홀릭</button>
       <button class="action-sub" id="allCafeBtn"><span class="icon">🌐</span> 전체 카페 열기</button>
     </div>
@@ -533,6 +534,8 @@ const CAFES = [
 const DAYS = ['월','화','수','목','금','토','일'];
 const DAY_MAP = {0:'일',1:'월',2:'화',3:'수',4:'목',5:'금',6:'토'};
 const LUNCH = ['맘스홀릭','대구맘 365','부경맘'];
+// 맘스홀릭 내 글 목록(수정하기용) — 모든 일괄 오픈 시 가장 먼저 열림
+const MY_ARTICLES = 'https://cafe.naver.com/f-e/cafes/10094499/members/FJaSyMacx_SmixLLzTn_cGyfHCajNHy9V7QYQDp0hxA?tab=articles';
 const RSHORT = {'경기':'경','부산':'부'};
 let selected = null;
 
@@ -562,7 +565,7 @@ function pick(day) {
     b.classList.toggle('active', b.dataset.day === day);
   });
   var list = forDay(day);
-  var total = list.length;
+  var total = list.length + 1;
   var btn = document.getElementById('openAllBtn');
   btn.disabled = false;
   btn.textContent = day + '요일 맘카페 ' + total + '개 한꺼번에 열기';
@@ -608,20 +611,26 @@ function render(day) {
 document.getElementById('openAllBtn').addEventListener('click', function() {
   if (!selected) return;
   var fail = 0;
+  if (!window.open(MY_ARTICLES, '_blank')) fail++;
   var list = forDay(selected);
   var first = list.filter(function(c) { return c.name === '맘스홀릭'; });
   var rest  = list.filter(function(c) { return c.name !== '맘스홀릭'; });
   first.forEach(function(c) { if (!window.open(c.link, '_blank')) fail++; });
   rest.forEach(function(c) { if (!window.open(c.link, '_blank')) fail++; });
-  var total = list.length;
+  var total = list.length + 1;
   if (fail) document.getElementById('openHint').textContent = '⚠ ' + (total-fail) + '/' + total + '개만 열림 — 팝업 허용 필요';
 });
 
 document.getElementById('lunchBtn').addEventListener('click', function() {
   var list = CAFES.filter(function(c) { return LUNCH.indexOf(c.name) !== -1; });
   var fail = 0;
+  if (!window.open(MY_ARTICLES, '_blank')) fail++;
   list.forEach(function(c) { if (!window.open(c.link, '_blank')) fail++; });
-  if (fail) alert((list.length-fail) + '/' + list.length + '개만 열림 — 팝업 차단 해제 필요');
+  if (fail) alert((list.length+1-fail) + '/' + (list.length+1) + '개만 열림 — 팝업 차단 해제 필요');
+});
+
+document.getElementById('myArticlesBtn').addEventListener('click', function() {
+  window.open(MY_ARTICLES, '_blank');
 });
 
 document.getElementById('momsBtn').addEventListener('click', function() {
@@ -633,8 +642,9 @@ document.getElementById('allCafeBtn').addEventListener('click', function() {
   var first = CAFES.filter(function(c) { return c.name === '맘스홀릭'; });
   var rest  = CAFES.filter(function(c) { return c.name !== '맘스홀릭'; });
   var fail = 0;
+  if (!window.open(MY_ARTICLES, '_blank')) fail++;
   first.concat(rest).forEach(function(c) { if (!window.open(c.link, '_blank')) fail++; });
-  if (fail) alert((CAFES.length-fail) + '/' + CAFES.length + '개만 열림 — 팝업 차단 해제 필요');
+  if (fail) alert((CAFES.length+1-fail) + '/' + (CAFES.length+1) + '개만 열림 — 팝업 차단 해제 필요');
 });
 
 init();
